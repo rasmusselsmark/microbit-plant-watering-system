@@ -9,16 +9,17 @@ input.onButtonPressed(Button.A, function () {
 input.onSound(DetectedSound.Loud, function () {
     if (Display == 0) {
         Display = 1
+        basic.showIcon(IconNames.Heart)
     } else {
+        basic.showIcon(IconNames.SmallDiamond)
         Display = 0
     }
 })
 input.onButtonPressed(Button.B, function () {
     Level += 5
-    if (Level > 50) {
+    if (Level > 100) {
         Level = 0
     }
-    basic.showNumber(Level)
 })
 let Display = 0
 let Enabled = 0
@@ -31,6 +32,7 @@ basic.forever(function () {
     if (Enabled == 1) {
         if (Display == 1) {
             basic.showNumber(smarthome.ReadSoilHumidity(AnalogPin.P1))
+            basic.showNumber(Level)
         } else {
             basic.clearScreen()
         }
